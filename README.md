@@ -1,3 +1,1 @@
 # zg-cj-paper
-
-test

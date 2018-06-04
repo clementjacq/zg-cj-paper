@@ -1459,17 +1459,106 @@ $$
 and the following diagram :
 $$
 \begin{tikzcd}
+A \otimes A \otimes A \otimes A 
+&&
+A \otimes A \otimes A
+\arrow[swap]{ll}{id_A \otimes id_A \otimes P}
+&&
+A \otimes A
+\arrow[swap]{ll}{id_A \otimes P}
+\arrow[Rightarrow, swap,shorten >=0.5cm, shorten <=0.5cm]{lld}{\alpha}
+\\
+A \otimes A \otimes A
+\arrow{u}{P \otimes id_A \otimes id_A}
+&&
+A \otimes A
+\arrow{u}{P \otimes id_A}
+\arrow{ll}{id_A \otimes P}
+\arrow[Rightarrow, swap,shorten >=0.0cm, shorten <=0.0cm]{d}{\alpha}
+&&
+A
+\arrow{u}{P}
+\arrow{ll}{P}
+\arrow{lld}{P}
+\\
+&&
+A \otimes A
+\arrow{ull}{P \otimes id_A}
 \end{tikzcd}
 $$
 
 must be equal to the diagram : 
 $$
 \begin{tikzcd}
+A \otimes A \otimes A \otimes A 
+&&
+A \otimes A \otimes A
+\arrow[swap]{ll}{id_A \otimes id_A \otimes P}
+\arrow[swap,Rightarrow, swap,shorten >=0.0cm, shorten <=0.0cm]{d}{Id_{id_A} \otimes \alpha }
+&&
+A \otimes A
+\arrow[swap]{ll}{id_A \otimes P}
+\arrow{lld}{id_A \otimes P}
+\arrow[Rightarrow, shorten >=1.2cm, shorten <=1.2cm]{lddl}{\alpha}
+\\
+A \otimes A \otimes A
+\arrow{u}{P \otimes id_A \otimes id_A}
+&&
+A \otimes A \otimes A
+\arrow[swap]{ull}{id_A \otimes P \otimes id_A}
+\arrow[Rightarrow, swap,shorten >=0.5cm, shorten <=0.5cm]{ll}{\alpha \otimes Id_{id_A}  }
+&&
+A
+\arrow{u}{P}
+\arrow{lld}{P}
+\\
+&&
+A \otimes A
+\arrow{ull}{P \otimes id_A}
+\arrow{u}{P \otimes id_A}
 \end{tikzcd}
 $$
 \end{definition}
 \begin{definition}
-pseudo-comonad
+A pseudo-comonad on a bicategory $\mathcal{C}$ is given by a pseudo-functor $F: \mathcal{C} \rightarrow \mathcal{C}$, two pseudo-natural transformations $v:F \Rightarrow Id_{\mathcal{C}}$ and $n: F \Rightarrow F \circ F$ called the counit and comultiplications, and three invertible modifications $ \alpha,\lambda,\rho$ whose components are given by the following diagrams : \\
+\begin{tikzcd}
+F(A)
+\arrow{rr}{n_A}
+\arrow{d}{n_A}
+&&
+F(F(A))
+\arrow{d}{n_{F(A)}}
+\arrow[Rightarrow, shorten >=0.2cm, shorten <=0.2cm]{dll}{\alpha_A}
+\\
+F(F(A))
+\arrow{rr}{F(n_A)}
+&&
+F(F(F(A)))
+\end{tikzcd}
+\begin{tikzcd}
+&&
+F(A)
+\arrow[swap]{lld}{id_{F(A)}}[name=A]{}
+\arrow{rrd}{id_{F(A)}}[name=C]{}
+\arrow{d}{n}[name=B]{}
+\arrow[Rightarrow, from=C,to=B, shorten >=0.5cm, shorten <=0.5cm]{}{\rho_A }
+\arrow[Rightarrow, from=B,to=A, shorten >=0.5cm, shorten <=0.5cm]{}{\lambda_A }
+\\
+F(A)
+&&
+F(F(A))
+\arrow{ll}{F(v_A)}
+\arrow{rr}{v_{F(A)}}
+&&
+F(A)
+\end{tikzcd}
+such that the following properties are verified : 
+\todo{}
+\end{definition}
+\begin{definition}
+The Kleisli bicategory $\mathcal{C}_F$ associated to a pseudo-comonad F on a bicategory $\mathcal{C}$ is defined as having the same $0$-cells as $\mathcal{C}$, and whose hom-category $\mathcal{C}_F (A,B)$ is given by $\mathcal{C}(F(A),B)$. \\
+The composition in $\mathcal{C}_F$ of $f:F(A)\rightarrow B$ and $g:F(B) \rightarrow C$ is defined as $$g \circ_F f := g \circ f(F) \circ n_A$$.
+This definition can easily be extended to provide the required composition functors. The identities in $\mathcal{C}_F$ are given by the components of the counit of the comonad. The $2$-isomorphisms and additional properties of the bicategory come directly from the pseudo-comonad structure.
 \end{definition}
 \begin{definition}
 A linear exponential pseudo-comonad 
